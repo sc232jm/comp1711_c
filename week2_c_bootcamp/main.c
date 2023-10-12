@@ -18,10 +18,22 @@ void reverse_string(char *str)
     int len = strlen(str);
 
     //Need to instance the array in the heap for the it to be returned globally.
-    char new_str[len];
+    //char new_str[len];
+
+    char *start = str;
 
     char *end = str + len - 1;
 
+    while(start < end) {
+        // Debugging is overrated
+        *start = *start ^ *end;
+        *end = *start ^ *end;
+        *start = *start ^ *end;
+
+        start++;
+        end--;
+    };
+/*
     for (int i = 0; i < len; i++)
     {
         printf("%p\n", end);
@@ -29,12 +41,13 @@ void reverse_string(char *str)
 
         new_str[i] = *end;
         end--;
-    }
+    }  
 
     new_str[len] = '\0';
 
     printf("Reversed: %s\n", new_str);
     //return new_str;
+*/
 }
 
 int main() {
@@ -44,7 +57,7 @@ int main() {
 
     reverse_string(str);
 
-    //printf("Reversed string: %s\n", reversed_str);
+    printf("Reversed: %s\n", str);
 
     printf("Input a limit: \n");
     int limit;
